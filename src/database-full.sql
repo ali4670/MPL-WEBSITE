@@ -699,6 +699,7 @@ ALTER TABLE level_chats DROP CONSTRAINT IF EXISTS level_chats_leacture_id_fkey;
 ALTER TABLE level_chats DROP CONSTRAINT IF EXISTS fk_level_chats_lecture;
 DO $$ BEGIN ALTER TABLE lecture_task_submissions DROP CONSTRAINT IF EXISTS lecture_task_submissions_lecture_id_fkey; EXCEPTION WHEN undefined_table THEN null; END $$;
 DO $$ BEGIN ALTER TABLE lecture_task_submissions DROP CONSTRAINT IF EXISTS fk_lecture_task_submissions_lecture; EXCEPTION WHEN undefined_table THEN null; END $$;
+DO $$ BEGIN ALTER TABLE lecture_task_submissions DROP CONSTRAINT IF EXISTS fk_task_submissions_lecture; EXCEPTION WHEN undefined_table THEN null; END $$;
 ALTER TABLE exam_attempts DROP CONSTRAINT IF EXISTS exam_attempts_level_id_fkey;
 ALTER TABLE exam_responses DROP CONSTRAINT IF EXISTS exam_responses_lecture_id_fkey;
 ALTER TABLE exam_responses DROP CONSTRAINT IF EXISTS exam_responses_level_id_fkey;
@@ -739,12 +740,6 @@ CREATE TABLE IF NOT EXISTS lecture_task_submissions (
     created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()),
     UNIQUE(student_id, lecture_id)
 );
-
-DO $$ BEGIN
-  ALTER TABLE lecture_task_submissions
-    ADD CONSTRAINT fk_task_submissions_lecture
-    FOREIGN KEY (lecture_id) REFERENCES lectures(id) ON DELETE SET NULL;
-EXCEPTION WHEN duplicate_object THEN null; WHEN SQLSTATE '23503' THEN null; END $$;
 
 ALTER TABLE lecture_task_submissions ADD COLUMN IF NOT EXISTS group_id UUID REFERENCES groups(id) ON DELETE SET NULL;
 CREATE INDEX IF NOT EXISTS idx_task_submissions_group ON lecture_task_submissions(group_id);
