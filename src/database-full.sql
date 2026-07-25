@@ -498,6 +498,8 @@ ALTER TABLE todos ENABLE ROW LEVEL SECURITY;
 -- Profiles
 DROP POLICY IF EXISTS "Public read profiles" ON profiles;
 CREATE POLICY "Public read profiles" ON profiles FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Insert own profile" ON profiles;
+CREATE POLICY "Insert own profile" ON profiles FOR INSERT WITH CHECK (auth.uid() = id);
 DROP POLICY IF EXISTS "Manage profiles" ON profiles;
 CREATE POLICY "Manage profiles" ON profiles FOR UPDATE USING (auth.uid() = id OR is_moderator());
 DROP POLICY IF EXISTS "Admins full access" ON profiles;
