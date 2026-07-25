@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS levels (
 
 -- Spotlight: Employee/Student of the Month
 CREATE TABLE IF NOT EXISTS spotlight (
+    id integer NOT NULL,
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
