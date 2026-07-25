@@ -743,7 +743,7 @@ DO $$ BEGIN
   ALTER TABLE lecture_task_submissions
     ADD CONSTRAINT fk_task_submissions_lecture
     FOREIGN KEY (lecture_id) REFERENCES lectures(id) ON DELETE SET NULL;
-EXCEPTION WHEN duplicate_object THEN null; WHEN foreign_key_exception THEN null; END $$;
+EXCEPTION WHEN duplicate_object THEN null; WHEN SQLSTATE '23503' THEN null; END $$;
 
 ALTER TABLE lecture_task_submissions ADD COLUMN IF NOT EXISTS group_id UUID REFERENCES groups(id) ON DELETE SET NULL;
 CREATE INDEX IF NOT EXISTS idx_task_submissions_group ON lecture_task_submissions(group_id);
