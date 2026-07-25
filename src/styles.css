@@ -1,0 +1,315 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-x: var(--x);
+  --color-x-foreground: var(--x-foreground);
+  --color-o: var(--o);
+  --color-o-foreground: var(--o-foreground);
+  --color-board: var(--board);
+  --color-board-line: var(--board-line);
+
+  @keyframes spotlight {
+    0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+  }
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* ── Dark Mode (default) ── */
+:root {
+  --radius: 1rem;
+  --background: #0C0A09;
+  --background-light: #1C1917;
+  --background-lighter: #292524;
+  --background-accent: #44403C;
+  --foreground: #F5F5F4;
+  --card: #1C1917;
+  --card-foreground: #F5F5F4;
+  --popover: #1C1917;
+  --popover-foreground: #F5F5F4;
+  --primary: #F9C74F;
+  --primary-foreground: #0C0A09;
+  --secondary: #292524;
+  --secondary-foreground: #F5F5F4;
+  --muted: #292524;
+  --muted-foreground: #A8A29E;
+  --accent: #F9C74F;
+  --accent-foreground: #0C0A09;
+  --destructive: #EF4444;
+  --destructive-foreground: #FAFAF9;
+  --border: #44403C;
+  --input: #44403C;
+  --ring: #F9C74F;
+  --chart-1: #F9C74F;
+  --chart-2: #D4A017;
+  --chart-3: #F59E0B;
+  --chart-4: #FBBF24;
+  --chart-5: #FDE68A;
+  --sidebar: #0C0A09;
+  --sidebar-foreground: #F5F5F4;
+  --sidebar-primary: #F9C74F;
+  --sidebar-primary-foreground: #0C0A09;
+  --sidebar-accent: #292524;
+  --sidebar-accent-foreground: #F5F5F4;
+  --sidebar-border: #44403C;
+  --sidebar-ring: #F9C74F;
+  --x: #F9C74F;
+  --x-foreground: #0C0A09;
+  --o: #D4A017;
+  --o-foreground: #0C0A09;
+  --board: #1C1917;
+  --board-line: #44403C;
+}
+
+.dark {
+  --background: #0C0A09;
+  --background-light: #1C1917;
+  --background-lighter: #292524;
+  --background-accent: #44403C;
+  --foreground: #F5F5F4;
+  --card: #1C1917;
+  --card-foreground: #F5F5F4;
+  --popover: #1C1917;
+  --popover-foreground: #F5F5F4;
+  --primary: #F9C74F;
+  --primary-foreground: #0C0A09;
+  --secondary: #292524;
+  --secondary-foreground: #F5F5F4;
+  --muted: #292524;
+  --muted-foreground: #A8A29E;
+  --accent: #F9C74F;
+  --accent-foreground: #0C0A09;
+  --destructive: #EF4444;
+  --destructive-foreground: #FAFAF9;
+  --border: #44403C;
+  --input: #44403C;
+  --ring: #F9C74F;
+  --chart-1: #F9C74F;
+  --chart-2: #D4A017;
+  --chart-3: #F59E0B;
+  --chart-4: #FBBF24;
+  --chart-5: #FDE68A;
+  --sidebar: #0C0A09;
+  --sidebar-foreground: #F5F5F4;
+  --sidebar-primary: #F9C74F;
+  --sidebar-primary-foreground: #0C0A09;
+  --sidebar-accent: #292524;
+  --sidebar-accent-foreground: #F5F5F4;
+  --sidebar-border: #44403C;
+  --sidebar-ring: #F9C74F;
+  --x: #F9C74F;
+  --x-foreground: #0C0A09;
+  --o: #D4A017;
+  --o-foreground: #0C0A09;
+  --board: #1C1917;
+  --board-line: #44403C;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  [lang="ar"],
+  [lang="ar"] * {
+    font-family: "Cairo", sans-serif !important;
+  }
+}
+
+@layer utilities {
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  .retro {
+    font-family: "Press Start 2P", "Courier New", Courier, monospace;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Lever Switch Styles */
+  .toggle-container {
+    --base-color: #2c2c2c;
+    --base-inner-color: #1a1a1a;
+    --handle-color: #4a4a4a;
+    --knob-color: #666;
+    --accent-color: #F9C74F;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .toggle-input {
+    display: none;
+  }
+
+  .toggle-base {
+    width: 100%;
+    height: 20px;
+    background-color: var(--base-color);
+    border-radius: 10px;
+    position: relative;
+    box-shadow:
+      inset 0 2px 5px rgba(0, 0, 0, 0.5),
+      0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .toggle-base-inside {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background-color: var(--base-inner-color);
+    border-radius: 8px;
+    transition: background-color 0.3s;
+  }
+
+  .toggle-input:checked ~ .toggle-base .toggle-base-inside {
+    background-color: #3D2E00;
+    box-shadow: inset 0 0 10px var(--accent-color);
+  }
+
+  .toggle-handle-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -15px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .toggle-handle {
+    position: relative;
+    width: 20px;
+    height: 50px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: rotate(-30deg);
+    transform-origin: bottom center;
+  }
+
+  .toggle-input:checked ~ .toggle-handle-wrapper .toggle-handle {
+    transform: rotate(30deg);
+  }
+
+  .toggle-handle-bar {
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(to right, #444, #666, #444);
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .toggle-handle-knob {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #888, #444);
+    border-radius: 50%;
+    margin-bottom: -5px;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .toggle-input:checked ~ .toggle-handle-wrapper .toggle-handle-knob {
+    background: radial-gradient(circle at 30% 30%, #FFD97D, #F9C74F);
+    box-shadow: 0 0 15px var(--accent-color);
+  }
+}
+
+/* Hide download button on video elements */
+video::-webkit-media-controls-download-button { display: none !important; }
+video::-webkit-media-controls-enclosure { overflow: hidden; }
+video::-internal-media-controls-overflow-button { display: none !important; }
+
+/* Mobile safe area utilities */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-area-top { padding-top: env(safe-area-inset-top, 0px); }
+
+/* Mobile-specific utilities */
+@media (max-width: 767px) {
+  .touch-target { min-height: 44px; min-width: 44px; }
+  .mobile-full { width: 100%; margin-left: 0; margin-right: 0; }
+  .mobile-stack { flex-direction: column; }
+  .mobile-hidden { display: none; }
+  .mobile-py { padding-top: 1rem; padding-bottom: 1rem; }
+  .mobile-px { padding-left: 1rem; padding-right: 1rem; }
+  .mobile-text-sm { font-size: 0.75rem; line-height: 1rem; }
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+canvas {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
