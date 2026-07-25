@@ -2735,6 +2735,9 @@ CREATE POLICY "Group members send messages" ON group_messages FOR INSERT WITH CH
 ALTER PUBLICATION supabase_realtime ADD TABLE group_messages;
 
 -- ── ADMIN SETUP ──
+-- Temporarily disable the admin promotion guard trigger
+DROP TRIGGER IF EXISTS trg_prevent_admin_promotion ON profiles;
+
 -- Creates profile if missing, then promotes to admin
 INSERT INTO profiles (id, username, user_number, role, is_admin, is_approved)
 SELECT id, COALESCE(raw_user_meta_data->>'username', split_part(email, '@', 1)), NULL, 'admin', true, true
@@ -2745,3 +2748,9 @@ WHERE email = 'alikilerahmed@gmail.com'
 UPDATE profiles
 SET role = 'admin', is_admin = true, is_approved = true
 WHERE id = (SELECT id FROM auth.users WHERE email = 'alikilerahmed@gmail.com');
+
+-- Re-create the admin promotion guard trigger
+CREATE TRIGGER trg_prevent_admin_promotion
+  BEFORE UPDATE OF role ON profiles
+  FOR EACH ROW
+  EXECUTE FUNCTION prevent_moderator_admin_promotion();
